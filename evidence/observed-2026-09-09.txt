@@ -1,0 +1,35 @@
+SANITIZED OBSERVATION — 2026-09-09
+
+Product:
+  ChatGPT Desktop 26.825.51511, build 7377
+  bundled codex-cli 0.151.0-alpha.7.2
+  macOS / Seatbelt
+
+Effective values:
+  CODEX_PERMISSION_PROFILE=cig03_loopback
+  CODEX_SANDBOX=seatbelt
+  CODEX_NETWORK_PROXY_ACTIVE=1
+  CODEX_NETWORK_ALLOW_LOCAL_BINDING=0
+
+Probe:
+  AF_INET / SOCK_STREAM
+  exactly one bind(("127.0.0.1", 0))
+  no listen()
+  no connect()
+  socket closed in finally
+
+Observed application result:
+  PermissionError: [Errno 1] Operation not permitted
+
+Observed matching kernel-log form:
+  Sandbox: Python(<pid>) deny(1) network-bind local:*:0
+
+Evidence interpretation:
+  The PID and timestamp were matched in the original controlled observation.
+  The requested address in the script was explicitly 127.0.0.1.
+  The kernel rendering "local:*:0" is not treated as proof that the script
+  requested a wildcard address.
+
+Excluded from this public evidence:
+  local username, hostname, home paths, private repo names, support-case IDs,
+  secrets, credentials, unrelated logs, and private project code.
