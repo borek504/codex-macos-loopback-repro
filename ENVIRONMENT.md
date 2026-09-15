@@ -38,6 +38,6 @@ This public package does not include:
 - support ticket identifiers,
 - tokens or credentials,
 - unrelated system logs,
-- private JARVIS source or configuration.
+- private project source or configuration.
 
 Those details are unnecessary for the claim being tested.
